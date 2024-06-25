@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    db_name: "{{ lookup('env', 'DB_NAME') }}"
+    db_user: "{{ lookup('env', 'DB_USER') }}"
+    db_password: "{{ lookup('env', 'DB_PASSWORD') }}"
+    db_host: "{{ lookup('env', 'DB_HOST') }}"
+    db_port: "{{ lookup('env', 'DB_PORT') }}"
+
+  tasks:
+    - name: Install psycopg2
+      pip:
+        name: psycopg2-binary
+        state: present
+
+    - name: Create table and insert data
+      postgresql_query:
+        login_host: "{{ db_host }}"
+        login_user: "{{ db_user }}"
+        login_password: "{{ db_password }}"
+        login_db: "{{ db_name }}"
+        port: "{{ db_port }}"
+        query: |
+          CREATE TABLE IF NOT EXISTS example_table (id SERIAL PRIMARY KEY, message TEXT);
+          INSERT INTO example_table (message) VALUES ('Hello World');
