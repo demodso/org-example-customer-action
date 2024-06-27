@@ -6,7 +6,7 @@ This action demonstrates how to use the infrastructure wrapper action to deploy 
 
 - `aws_access_key_id`: AWS Access Key ID
 - `aws_secret_access_key`: AWS Secret Access Key
-- `aws_region`: AWS region (default: 'us-west-2')
+- `aws_region`: AWS region (default: 'ap-southeast-2')
 - `rds_instance_class`: RDS instance class (default: 'db.t3.micro')
 - `db_name`: Database name
 - `db_username`: Database username
@@ -31,7 +31,7 @@ uses: demodso/org-example-customer-action@v1
 with:
   aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
   aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  aws_region: "us-west-2"
+  aws_region: "ap-southeast-2"
   rds_instance_class: "db.t3.micro"
   db_name: "customerdb"
   db_username: "customer_user"
